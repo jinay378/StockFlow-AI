@@ -1,23 +1,23 @@
+import type { ReactNode } from "react";
 import Navbar from "../components/layout/Navbar";
 import Sidebar from "../components/layout/Sidebar";
-import Footer from "../components/layout/Footer";
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function MainLayout({ children }: Props) {
   return (
-    <div>
-      <Navbar />
+    <div className="flex h-screen">
+      <Sidebar />
 
-      <div>
-        <Sidebar />
+      <div className="flex flex-1 flex-col">
+        <Navbar />
 
-        <main>{children}</main>
+        <main className="flex-1 bg-slate-100 p-6">
+          {children}
+        </main>
       </div>
-
-      <Footer />
     </div>
   );
 }
