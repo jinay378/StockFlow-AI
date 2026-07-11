@@ -1,5 +1,11 @@
-function DashboardPage() {
-  return <h1>Dashboard</h1>;
+function LoginPage() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <h1 className="text-5xl font-bold">
+        Login
+      </h1>
+    </div>
+  );
 }
 
-export default DashboardPage;
+export default LoginPage;
