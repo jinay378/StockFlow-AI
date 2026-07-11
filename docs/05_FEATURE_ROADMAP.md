@@ -1,0 +1,1 @@
+Version 1 (MVP)AuthenticationDashboardProductsInventorySuppliersCustomers\-------------------Version 2InvoicesReportsAnalyticsWarehouse\-------------------Version 3AI ChatbotDemand ForecastingNotifications

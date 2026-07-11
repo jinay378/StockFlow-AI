@@ -1,0 +1,1 @@
+\# Business Requirements\## ProblemWhat problems do businesses face today?\## Existing SolutionsHow are businesses solving them today?\## LimitationsWhy are Excel and notebooks not enough?\## Proposed SolutionHow will StockFlow AI solve those problems?\## Expected BenefitsWhat improvements will businesses get?
