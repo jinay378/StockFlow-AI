@@ -1,5 +1,5 @@
-import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../features/dashboard/Dashboard";
+import MainLayout from "../layouts/MainLayout";
 
 function HomePage() {
   return (
