@@ -1,10 +1,7 @@
+import HomePage from "./pages/HomePage";
+
 function App() {
-  return (
-    <div>
-      <h1>🚀 StockFlow AI</h1>
-      <p>Inventory Management System</p>
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
