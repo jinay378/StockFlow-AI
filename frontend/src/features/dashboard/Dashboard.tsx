@@ -2,9 +2,8 @@ import DashboardCard from "./components/DashboardCard";
 
 function Dashboard() {
   return (
-    <div className="space-y-6">
-
-      <h1 className="text-3xl font-bold">
+    <div>
+      <h1 className="mb-8 text-4xl font-bold">
         Dashboard
       </h1>
 
@@ -13,25 +12,28 @@ function Dashboard() {
         <DashboardCard
           title="Revenue"
           value="₹1,25,000"
+          color="text-green-600"
         />
 
         <DashboardCard
           title="Products"
-          value="1,250"
+          value="1250"
+          color="text-blue-600"
         />
 
         <DashboardCard
           title="Orders"
           value="245"
+          color="text-purple-600"
         />
 
         <DashboardCard
           title="Low Stock"
           value="18"
+          color="text-red-600"
         />
 
       </div>
-
     </div>
   );
 }
