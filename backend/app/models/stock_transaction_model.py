@@ -18,4 +18,6 @@ class StockTransaction(Base):
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
+    user_id = Column(Integer, ForeignKey("users.id"), default=1, index=True)
+
     product = relationship("Product")

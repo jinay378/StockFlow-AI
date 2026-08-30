@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.product_model import Product
+from app.models.inventory_model import Inventory
 
 
 def create_product(db: Session, product):
@@ -15,6 +16,17 @@ def create_product(db: Session, product):
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
+
+    # Create inventory record automatically
+    inventory = Inventory(
+        product_id=new_product.id,
+        quantity=product.quantity,
+        minimum_stock=10,
+        warehouse="Main Warehouse"
+    )
+
+    db.add(inventory)
+    db.commit()
 
     return new_product
 

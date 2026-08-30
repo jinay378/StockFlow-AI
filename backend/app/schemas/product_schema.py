@@ -6,4 +6,4 @@ class ProductCreate(BaseModel):
     sku: str
     price: float
     quantity: int
-    category_id: int
+    category_id: int = 1

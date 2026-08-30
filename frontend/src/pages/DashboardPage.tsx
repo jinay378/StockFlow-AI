@@ -1,5 +1,7 @@
+import Dashboard from "../features/dashboard/Dashboard";
+
 function DashboardPage() {
-  return <h1>Dashboard</h1>;
+  return <Dashboard />;
 }
 
 export default DashboardPage;

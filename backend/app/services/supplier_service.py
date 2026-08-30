@@ -4,16 +4,13 @@ from app.models.supplier_model import Supplier
 from app.schemas.supplier_schema import SupplierCreate
 
 
-# -----------------------------
-# Create Supplier
-# -----------------------------
-def create_supplier(db: Session, supplier: SupplierCreate):
-
+def create_supplier(db: Session, supplier: SupplierCreate, user_id: int = 1):
     new_supplier = Supplier(
         name=supplier.name,
         email=supplier.email,
         phone=supplier.phone,
         address=supplier.address,
+        user_id=user_id,
     )
 
     db.add(new_supplier)
@@ -23,36 +20,27 @@ def create_supplier(db: Session, supplier: SupplierCreate):
     return new_supplier
 
 
-# -----------------------------
-# Get All Suppliers
-# -----------------------------
-def get_suppliers(db: Session):
-    return db.query(Supplier).all()
+def get_suppliers(db: Session, user_id: int = 1):
+    return db.query(Supplier).filter(Supplier.user_id == user_id).all()
 
 
-# -----------------------------
-# Get Single Supplier
-# -----------------------------
-def get_supplier(db: Session, supplier_id: int):
+def get_supplier(db: Session, supplier_id: int, user_id: int = 1):
     return (
         db.query(Supplier)
-        .filter(Supplier.id == supplier_id)
+        .filter(Supplier.id == supplier_id, Supplier.user_id == user_id)
         .first()
     )
 
 
-# -----------------------------
-# Update Supplier
-# -----------------------------
 def update_supplier(
     db: Session,
     supplier_id: int,
     supplier: SupplierCreate,
+    user_id: int = 1,
 ):
-
     existing_supplier = (
         db.query(Supplier)
-        .filter(Supplier.id == supplier_id)
+        .filter(Supplier.id == supplier_id, Supplier.user_id == user_id)
         .first()
     )
 
@@ -70,17 +58,14 @@ def update_supplier(
     return existing_supplier
 
 
-# -----------------------------
-# Delete Supplier
-# -----------------------------
 def delete_supplier(
     db: Session,
     supplier_id: int,
+    user_id: int = 1,
 ):
-
     supplier = (
         db.query(Supplier)
-        .filter(Supplier.id == supplier_id)
+        .filter(Supplier.id == supplier_id, Supplier.user_id == user_id)
         .first()
     )
 

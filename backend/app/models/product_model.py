@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
 from app.database.base import Base
+from app.models.category_model import Category
 
 
 class Product(Base):
@@ -20,6 +21,13 @@ class Product(Base):
     category_id = Column(
         Integer,
         ForeignKey("categories.id")
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        default=1,
+        index=True
     )
 
     category = relationship("Category")

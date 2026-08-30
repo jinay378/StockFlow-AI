@@ -1,13 +1,14 @@
+from typing import Optional
 from sqlalchemy.orm import Session
 
 from app.models.category_model import Category
 from app.schemas.category_schema import CategoryCreate
 
 
-def create_category(db: Session, category: CategoryCreate):
-
+def create_category(db: Session, category: CategoryCreate, user_id: int = 1):
     existing = db.query(Category).filter(
-        Category.name == category.name
+        Category.name == category.name,
+        Category.user_id == user_id,
     ).first()
 
     if existing:
@@ -15,7 +16,8 @@ def create_category(db: Session, category: CategoryCreate):
 
     new_category = Category(
         name=category.name,
-        description=category.description
+        description=category.description,
+        user_id=user_id,
     )
 
     db.add(new_category)
@@ -25,14 +27,14 @@ def create_category(db: Session, category: CategoryCreate):
     return new_category
 
 
-def get_categories(db: Session):
-    return db.query(Category).all()
+def get_categories(db: Session, user_id: int = 1):
+    return db.query(Category).filter(Category.user_id == user_id).all()
 
 
-def get_category(db: Session, category_id: int):
+def get_category(db: Session, category_id: int, user_id: int = 1):
     return (
         db.query(Category)
-        .filter(Category.id == category_id)
+        .filter(Category.id == category_id, Category.user_id == user_id)
         .first()
     )
 
@@ -40,12 +42,12 @@ def get_category(db: Session, category_id: int):
 def update_category(
     db: Session,
     category_id: int,
-    category: CategoryCreate
+    category: CategoryCreate,
+    user_id: int = 1,
 ):
-
     existing = (
         db.query(Category)
-        .filter(Category.id == category_id)
+        .filter(Category.id == category_id, Category.user_id == user_id)
         .first()
     )
 
@@ -61,11 +63,10 @@ def update_category(
     return existing
 
 
-def delete_category(db: Session, category_id: int):
-
+def delete_category(db: Session, category_id: int, user_id: int = 1):
     category = (
         db.query(Category)
-        .filter(Category.id == category_id)
+        .filter(Category.id == category_id, Category.user_id == user_id)
         .first()
     )
 
