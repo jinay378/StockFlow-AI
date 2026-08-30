@@ -89,6 +89,7 @@ interface LogoProps {
   showText?: boolean;
   to?: string;
   className?: string;
+  textColor?: string;
 }
 
 export default function Logo({
@@ -96,13 +97,14 @@ export default function Logo({
   showText = true,
   to,
   className = "",
+  textColor = "text-white",
 }: LogoProps) {
   const content = (
     <div className={`inline-flex items-center gap-3 group ${className}`}>
       <LogoIcon size={size} className="group-hover:scale-105 transition-transform duration-200" />
       {showText && (
-        <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white block leading-none">
-          StockFlow <span className="text-emerald-500">AI</span>
+        <span className={`text-xl font-bold tracking-tight ${textColor} block leading-none`}>
+          StockFlow <span className="text-emerald-400">AI</span>
         </span>
       )}
     </div>

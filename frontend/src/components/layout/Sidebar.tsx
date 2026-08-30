@@ -110,7 +110,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     <>
       {/* Logo Header */}
       <div className="h-16 flex items-center justify-between px-5 border-b border-slate-200 dark:border-slate-800">
-        <Logo size={34} to="/dashboard" />
+        <Logo size={34} to="/dashboard" textColor="text-slate-900 dark:text-white" />
 
         {isMobile && (
           <button
