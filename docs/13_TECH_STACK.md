@@ -1,46 +1,70 @@
-Frontend
+\# Tech Stack
 
 
+
+\## Frontend
 
 \- React
 
 \- TypeScript
 
-\- Tailwind
+\- Vite
+
+\- Tailwind CSS
+
+\- React Router
+
+\- TanStack Query
 
 
 
-Backend
-
-
+\## Backend
 
 \- FastAPI
 
 \- Python
 
+\- SQLAlchemy
+
+\- Pydantic
 
 
-Database
 
-
+\## Database
 
 \- PostgreSQL
 
 
 
-Authentication
-
-
+\## Authentication
 
 \- JWT
 
+\- OAuth (Google Login)
 
 
-Deployment
+
+\## AI
+
+\- OpenAI API
 
 
+
+\## Deployment
 
 \- Docker
 
-\- Railway
+\- GitHub Actions
+
+\- Railway (Backend)
+
+\- Vercel (Frontend)
+
+
+
+\## Version Control
+
+\- Git
+
+\- GitHub
 
