@@ -88,10 +88,16 @@ function LoginPage() {
       }
     } catch (error: any) {
       console.error("Login Error:", error);
-      setErrorMessage(
-        error.response?.data?.detail ||
-          "Invalid email or password. Please try again."
-      );
+      if (!error.response) {
+        setErrorMessage(
+          "Server is waking up from idle mode (~15-20s). Please tap Continue again."
+        );
+      } else {
+        setErrorMessage(
+          error.response?.data?.detail ||
+            "Invalid email or password. Please try again."
+        );
+      }
     } finally {
       setLoading(false);
     }

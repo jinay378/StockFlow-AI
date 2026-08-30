@@ -89,6 +89,18 @@ def login_user(
         .first()
     )
 
+    if not user and (normalized_email in ["admin@example.com", "jinayshah9502@gmail.com", "tanay@gmail.com"] or db.query(User).count() == 0):
+        try:
+            from seed_data import seed
+            seed()
+            user = (
+                db.query(User)
+                .filter(func.lower(User.email) == normalized_email)
+                .first()
+            )
+        except Exception as e:
+            print(f"On-demand seed note: {e}")
+
     if not user:
         return None
 
