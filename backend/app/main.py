@@ -108,3 +108,13 @@ async def root():
     return {
         "message": "Welcome to StockFlow AI Backend 🚀"
     }
+
+@app.get("/init-db")
+@app.post("/init-db")
+def init_database():
+    from seed_data import seed
+    try:
+        seed()
+        return {"status": "success", "message": "Database initialized and seeded with demo accounts!"}
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
