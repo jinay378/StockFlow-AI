@@ -87,6 +87,19 @@ app.include_router(purchase.router)
 app.include_router(ai.router)
 
 # =========================================================
+# LIFECYCLE / STARTUP EVENT
+# =========================================================
+
+@app.on_event("startup")
+def on_startup():
+    Base.metadata.create_all(bind=engine)
+    try:
+        from seed_data import seed_if_empty
+        seed_if_empty()
+    except Exception as e:
+        print(f"Startup initialization note: {e}")
+
+# =========================================================
 # ROOT
 # =========================================================
 

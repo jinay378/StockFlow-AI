@@ -51,7 +51,7 @@ def seed():
         db.commit()
 
         # 2. Users
-        print("👤 Creating Admin user...")
+        print("👤 Creating Users (Admin Demo, Jinay Company Owner, Tanay Staff)...")
         admin = User(
             username="admin",
             email="admin@example.com",
@@ -59,6 +59,27 @@ def seed():
             role=UserRole.admin,
         )
         db.add(admin)
+        db.commit()
+        db.refresh(admin)
+
+        jinay = User(
+            username="Jinay Shah",
+            email="jinayshah9502@gmail.com",
+            password=hash_password("password123"),
+            role=UserRole.admin,
+        )
+        db.add(jinay)
+        db.commit()
+        db.refresh(jinay)
+
+        tanay = User(
+            username="Tanay Shah",
+            email="tanay@gmail.com",
+            password=hash_password("password123"),
+            role=UserRole.staff,
+            company_id=jinay.id,
+        )
+        db.add(tanay)
         db.commit()
 
         # 3. Categories
@@ -254,5 +275,18 @@ def seed():
     finally:
         db.close()
 
+def seed_if_empty():
+    db = SessionLocal()
+    try:
+        admin_user = db.query(User).filter(User.email == "admin@example.com").first()
+        if not admin_user:
+            print("🚀 Empty database detected on startup. Initializing default demo data...")
+            seed()
+    except Exception as e:
+        print(f"⚠️ Startup seed check error: {e}")
+    finally:
+        db.close()
+
 if __name__ == "__main__":
     seed()
+
