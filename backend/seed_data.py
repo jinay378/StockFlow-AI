@@ -28,10 +28,10 @@ from app.models.purchase_model import Purchase, PurchaseItem
 from app.models.stock_adjustment_model import StockAdjustment
 from app.models.stock_transaction_model import StockTransaction
 
-def seed():
+def seed(custom_db=None):
     print("🌱 Initializing StockFlow AI database tables...")
     Base.metadata.create_all(bind=engine)
-    db = SessionLocal()
+    db = custom_db if custom_db is not None else SessionLocal()
 
     try:
         # 1. Clear existing demo records to ensure clean state
@@ -273,7 +273,8 @@ def seed():
         print(f"❌ Error seeding database: {e}")
         raise
     finally:
-        db.close()
+        if custom_db is None:
+            db.close()
 
 def seed_if_empty():
     db = SessionLocal()
